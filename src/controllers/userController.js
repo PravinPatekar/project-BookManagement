@@ -18,7 +18,7 @@ const registerUser = async function (req, res) {
       if (Object.keys(data).length == 0) {
         return res.status(400).send({
           status: false,
-          message: "Please Provide Some Data To Create !!",
+          message: "Please Provide Required Data To Create User !!",
         });
       }
       //================== if title is not valid=============
@@ -122,7 +122,7 @@ const registerUser = async function (req, res) {
       ) {
         return res.status(400).send({
           status: false,
-          msg: "Please enter Minimum eight characters or maximum 15 character, at least one uppercase letter, one lowercase letter, one number and one special character",
+          msg: "Please enter Minimum 8 characters or maximum 15 character, at least one uppercase letter, one lowercase letter, one number and one special character",
         });
       }
       //=================== user address=====================
