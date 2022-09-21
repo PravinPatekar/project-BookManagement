@@ -30,7 +30,7 @@ const bookSchema = new mongoose.Schema(
       },
     ],
     reviews: {
-      type: number,
+      type: Number,
       default: 0,
       comment: String,
     },
@@ -40,7 +40,7 @@ const bookSchema = new mongoose.Schema(
       default: false,
     },
     releasedAt: {
-      Date,
+      type:Date,
       required: true,
       format: "YYYY-MM-DD",
     },

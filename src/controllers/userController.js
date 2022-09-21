@@ -11,6 +11,7 @@ const isValid = function (value) {
 const registerUser = async function (req, res) {
   try {
     if (Object.keys(req.query).length === 0) {
+      
       const data = req.body;
       let { title, name, phone, email, password, address } = data;
 
@@ -38,7 +39,7 @@ const registerUser = async function (req, res) {
         });
       }
       //============================== if name is not entered in body ================================
-      if (!name.trim()) {
+      if (!name) {
         return res
           .status(400)
           .send({ status: false, message: "Name is mandatory !!" });
@@ -68,6 +69,10 @@ const registerUser = async function (req, res) {
         return res
           .status(400)
           .send({ status: false, message: "phone is mandatory !!" });
+      }
+      if(!phone.trim()){
+        return res.status(400)
+        .send({status:false, message:"phone number field cannot be an empty string!!"})
       }
       //=============================== to check the phone no. format =================================
       let phoneValid = /^[6-9]\d{9}$/.test(phone);
@@ -180,6 +185,7 @@ const login = async function (req, res) {
         msg: "passord is required",
       });
     }
+
 
     let isValidEmail = validator.isEmail(data.email);
     if (isValidEmail == false) {
