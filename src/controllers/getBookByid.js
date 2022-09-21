@@ -1,5 +1,10 @@
 const bookModel = require("../models/bookModel");
 const reviewModel = require("../models/reviewModel");
+const mongoose = require("mongoose")
+
+function isValidObjectId(value){
+  return mongoose.Types.ObjectId.isValid(value)
+}
 
 const getBookById = async function (req, res) {
   try {
@@ -8,22 +13,16 @@ const getBookById = async function (req, res) {
     if (!isValidObjectId(bookId))
       return res
         .status(400)
-        .send({ status: false, message: "Ohh! dear you entred wrong details." });
+        .send({ status: false, message: "Book Id invalid" });
 
-    let book = await bookModel.findById(bookId);
+    let book = await bookModel.findOne({isDeleted:false,bookId});
     if (!book)
       return res
         .status(404)
         .send({
           status: false,
-          message: "Oops! we don't have the book you are looking for.",
+          message: "Book Not Found",
         });
-
-    if (book.isDeleted == true)
-      return res.status(404).send({
-        status: false,
-        message: "sorry! we don't have any book with this details.",
-      });
 
     let reviewData = await reviewModel.find({ bookId: book._id });
     if (book.reviews == 0) {
@@ -37,7 +36,7 @@ const getBookById = async function (req, res) {
       .send({
         status: true,
         count: reviewData.length,
-        message: "Hurray! we found the book you're looking for.",
+        message: "success",
         data: book,
       });
   } catch (err) {

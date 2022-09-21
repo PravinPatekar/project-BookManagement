@@ -14,15 +14,17 @@ const registerUser = async function (req, res) {
     if (Object.keys(req.query).length === 0) {
       
       const data = req.body;
-      let { title, name, phone, email, password, address } = data;
-
-      //================ if no data is provided in body ================================
+//================ if no data is provided in body ================================
       if (Object.keys(data).length == 0) {
         return res.status(400).send({
           status: false,
           message: "Please Provide Required Data To Create User !!",
         });
       }
+      let { title, name, phone, email, password, address } = data;
+
+      
+    
       //================== if title is not valid=============
       if (isValid(title) == false) {
         return res.status(400).send({
@@ -59,12 +61,7 @@ const registerUser = async function (req, res) {
           message: `${name} can be in alphabets only !!`,
         });
       }
-      if (!name.trim()) {
-        return res.status(400).send({
-          status: false,
-          message: `Name can not be  an empty string !!`,
-        });
-      }
+    
       //================================ phone is mandatory =========================================
       if (!phone) {
         return res
@@ -132,6 +129,7 @@ const registerUser = async function (req, res) {
         });
       }
       //=================== user address=====================
+      console.log('address' in data)
       const { street, pincode, city } = address;
 
       //========================== check valid pincode====================
@@ -202,19 +200,18 @@ const login = async function (req, res) {
     });
 
     if (!user) {
-      return res.status(404).send({
+      return res.status(401).send({
         status: false,
-        msg: "user not found",
+        msg: "email or password is not carrect",
       });
     }
 
     let token = jwt.sign(
       {
-        email: user._id,
-        iat: new Date().getTime() / 1000,
-        expiresIn: "99m"
+        userId: user._id
       },
       "Project 3 Bookmanagement Group-49",
+      {expiresIn: "99m"}
     
     );
 
