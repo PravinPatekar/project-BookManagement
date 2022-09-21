@@ -6,6 +6,10 @@ function isValidObjectId(value){
   return mongoose.Types.ObjectId.isValid(value)
 }
 
+const isValidObjectId = (objectId) => {
+    return mongoose.Types.ObjectId.isValid(objectId)
+  };
+  
 const getBookById = async function (req, res) {
   try {
     let bookId = req.params.bookId;
