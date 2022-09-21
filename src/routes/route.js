@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const userController= require("../controllers/userController")
+const createBook = require("../controllers/userController")
 
 
 
@@ -11,6 +12,10 @@ router.post("/register", userController.registerUser)
 
 //============login api================
 router.post("/login", userController.login)
+
+// =============== Create Book api ==================
+
+router.post("/books", createBook.createBook )
  
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {
