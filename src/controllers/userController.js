@@ -12,6 +12,7 @@ const isValid = function (value) {
 const registerUser = async function (req, res) {
   try {
     if (Object.keys(req.query).length === 0) {
+      
       const data = req.body;
       let { title, name, phone, email, password, address } = data;
 
@@ -19,7 +20,7 @@ const registerUser = async function (req, res) {
       if (Object.keys(data).length == 0) {
         return res.status(400).send({
           status: false,
-          message: "Please Provide Some Data To Create !!",
+          message: "Please Provide Required Data To Create User !!",
         });
       }
       //================== if title is not valid=============
@@ -39,7 +40,7 @@ const registerUser = async function (req, res) {
         });
       }
       //============================== if name is not entered in body ================================
-      if (!name.trim()) {
+      if (!name) {
         return res
           .status(400)
           .send({ status: false, message: "Name is mandatory !!" });
@@ -69,6 +70,10 @@ const registerUser = async function (req, res) {
         return res
           .status(400)
           .send({ status: false, message: "phone is mandatory !!" });
+      }
+      if(!phone.trim()){
+        return res.status(400)
+        .send({status:false, message:"phone number field cannot be an empty string!!"})
       }
       //=============================== to check the phone no. format =================================
       let phoneValid = /^[6-9]\d{9}$/.test(phone);
@@ -123,7 +128,7 @@ const registerUser = async function (req, res) {
       ) {
         return res.status(400).send({
           status: false,
-          msg: "Please enter Minimum eight characters or maximum 15 character, at least one uppercase letter, one lowercase letter, one number and one special character",
+          msg: "Please enter Minimum 8 characters or maximum 15 character, at least one uppercase letter, one lowercase letter, one number and one special character",
         });
       }
       //=================== user address=====================
@@ -181,6 +186,7 @@ const login = async function (req, res) {
         msg: "passord is required",
       });
     }
+
 
     let isValidEmail = validator.isEmail(data.email);
     if (isValidEmail == false) {
