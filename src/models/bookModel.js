@@ -40,11 +40,7 @@ const bookSchema = new mongoose.Schema(
       default: false,
     },
     releasedAt: {
-<<<<<<< HEAD
-      type:Date,
-=======
       type: Date,
->>>>>>> 0995a8804666871dfcc6483661306cc2a2fb1ad2
       required: true,
       format: "YYYY-MM-DD",
     },
