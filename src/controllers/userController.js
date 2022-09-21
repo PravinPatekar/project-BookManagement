@@ -8,6 +8,7 @@ const isValid = function (value) {
   return true;
 };
 
+
 const registerUser = async function (req, res) {
   try {
     if (Object.keys(req.query).length === 0) {
@@ -210,9 +211,8 @@ const login = async function (req, res) {
     let token = jwt.sign(
       {
         email: user._id,
-        expiresIn: "99m",
-          
         iat: new Date().getTime() / 1000,
+        expiresIn: "99m"
       },
       "Project 3 Bookmanagement Group-49",
     
