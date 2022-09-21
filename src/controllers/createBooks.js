@@ -20,7 +20,10 @@ const isValidObjectId = function (objectid) {
     return mongoose.Types.ObjectId.isValid(objectid)
 }
 
-let isbnRegex = /(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)/
+let isbnRegex = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/
+
+
+
 
 const createBook = async function (req, res) {
     try {
@@ -72,7 +75,14 @@ const createBook = async function (req, res) {
         if (!isValid(ISBN)) {
             return res.status(400).send({ status: false, message: "ISBN is required" })
         }
-    
+
+        // if (!/^[0-9]{1}[0-9]{12}$/.test(ISBN)) {
+        //     return res.status(400).send({
+        //       status: false,
+        //       message: `this ${ISBN} ISBN is not valid please enter 13 digit number without space and special charecter`,
+        //     });
+        //   }
+      
         if (!(isbnRegex.test(ISBN))) {
             return res.status(400).send({ status: false, message: "ISBN Should be 10 or 13 digits only" })
         }
@@ -93,6 +103,9 @@ const createBook = async function (req, res) {
         if (!isValid(subcategory)) {
             return res.status(400).send({ status: false, message: "subcategory is required" })
         }
+         if(!Array.isArray(subcategory)){
+            return res.status(400).send({status:false, message:"subcategory Should be array"})
+         }
         // ===============================================>> End <<===========================================================//
         // ===============================================>> releasedAt validation <<===========================================================//
         if (!isValid(releasedAt)) {

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const bookSchema = new mongoose.Schema(
@@ -30,20 +30,21 @@ const bookSchema = new mongoose.Schema(
       },
     ],
     reviews: {
-      type: number,
+      type: Number,
       default: 0,
     },
-    deletedAt: { Date },
+    deletedAt: { type:Date },
     isDeleted: {
       type: Boolean,
       default: false,
     },
-    releasedAt: {
-      Date,
+    releasedAt: {      
+      type: Date,
       required: true,
       format: "YYYY-MM-DD",
     },
   },
-  { timestamps: true });
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Book", bookSchema);
