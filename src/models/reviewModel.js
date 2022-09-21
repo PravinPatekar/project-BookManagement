@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema(
   {
     bookId: {
       type: ObjectId,
-      required: true,
+      required: [true, "Please provide a Book 'Id'"],
       ref: "Book"
     },
 
@@ -25,7 +25,7 @@ const reviewSchema = new mongoose.Schema(
 
     rating: {
       type: Number,
-      required: true,
+      required: [true, "please rate our book it's very important for us"],
       min: 1,
       max: 5,
       trim: true

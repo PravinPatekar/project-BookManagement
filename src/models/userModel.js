@@ -5,33 +5,33 @@ const userSchema = new mongoose.Schema(
     title: {
       type: String,
       trim: true,
-      required: true,
+      required: [true,"Title must be present"],
       enum: ["Mr", "Mrs", "Miss"],
     },
 
     name: {
       type: String,
-      required: true,
+      required: [true,"Please provide a name"],
       trim: true,
     },
 
     phone: {
-      type: String,
+      type: Number,
       trim: true,
-      required: true,
+      required: [true,"Please provide phone number"],
       unique: true,
     },
 
     email: {
       type: String,
-      required: true,
+      required:[ true,"Please provide email id"],
       unique: true,
       trim: true,
     },
 
     password: {
       type: String,
-      required: true,
+      required:[true,"Please provide password"],
       trim: true,
     },
 
