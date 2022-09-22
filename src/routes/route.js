@@ -24,7 +24,7 @@ router.get("/books", authentication, bookControllers.getBook)
 router.get("/books/:bookId", authentication,authorisation, bookControllers.getBookById)
 
 // ===================delete api======================//
-router.delete("/books/:bookId", bookControllers.deleteById)
+router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)
 
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {

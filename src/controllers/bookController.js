@@ -187,21 +187,9 @@ const deleteById = async function (req, res) {
     try {
         let bookId = req.params.bookId
 
-        if (!isValidObjectId(bookId)) {
-            return res.status(400).send({ status: false, message: "Invalid BookId" })
+        let upDated =await bookModel.findByIdAndUpdate(  bookId , { $set: { isDeleted: true, deletedAt: Date.now() } })
 
-        }
-
-        let data = await bookModel.findOne({_id:bookId, isDeleted:true})
-        if (data.isDeleted == true) return res.status(404).send({ status: false, message: "Book not found" })
-
-        let upDated =await bookModel.findByIdAndUpdate(  bookId , { $set: { isDeleted: true, deletedAt: Date.now() } }, { new: true })
-
-        return res.status(200).send({ status: false, message: "Book deleted successfully.", data:upDated })
-
-
-
-
+        return res.status(200).send({ status: false, message: "Book deleted successfully." })
     } catch (err) {
         return res.status(500).send({ status: false, message: err.message })
     }
