@@ -10,7 +10,10 @@ const getBook = async function (req, res) {
 
         if (getBooks.length == 0) return res.status(404).send({ status: false, message: "No such book exist you are serching for!!" })
 
-        getBooks.sort((a, b) => a.title.localeCompare(b.title))
+         
+        getBooks.sort(function (a, b) {
+          return a.title.localeCompare(b.title);
+          });
 
 
 
