@@ -5,7 +5,7 @@
   "userId": "6329d08e68c35a26cf39d74e",                        
   "ISBN":"978-0008391331" ,
   "category": "Book",
-  "subcategory": ["Non fiction"],
+  "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
  }
 
@@ -16,7 +16,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391332" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -25,7 +25,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391333" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -34,7 +34,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391334" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory": "Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -43,7 +43,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391335" ,
  "category": "Book",
- "subcategory": ["fiction"],
+ "subcategory":"fiction",
  "releasedAt": "2021-09-21"
 }
 {
@@ -52,7 +52,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391336" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -61,7 +61,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391337" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -70,7 +70,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391338" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
 {
@@ -79,7 +79,7 @@
  "userId": "6329d08e68c35a26cf39d74e",
  "ISBN":"978-0008391339" ,
  "category": "Book",
- "subcategory": ["Non fiction"],
+ "subcategory":"Non fiction",
   "releasedAt": "2021-09-21"
 }
  {
@@ -88,7 +88,7 @@
   "userId": "6329d08e68c35a26cf39d74e",
   "ISBN":"978-0008391340" ,
   "category": "Book",
-  "subcategory": ["Non fiction"],
+  "subcategory":"Non fiction",
     "releasedAt": "2021-09-21"
  }
 
@@ -99,7 +99,7 @@
   "userId": "6329d6a2266fe104fe09b8aa",
   "ISBN":"978-0008391341" ,
   "category": "movie",
-  "subcategory": ["fiction"],
+  "subcategory":"fiction",
   "releasedAt": "2021-09-10"
  }
  
@@ -111,7 +111,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391342" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory":"fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -123,7 +123,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391343" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory":"fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -135,7 +135,7 @@
   "userId": "6329d6a2266fe104fe09b8aa",
   "ISBN":"978-0008391344" ,
   "category": "movie",
-  "subcategory": ["fiction"],
+  "subcategory": "fiction",
   "releasedAt": "2021-09-10"
  }
  
@@ -147,7 +147,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391345" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory": "fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -159,7 +159,7 @@
   "userId": "6329d6a2266fe104fe09b8aa",
   "ISBN":"978-0008391346" ,
   "category": "movie",
-  "subcategory": ["fiction"],
+  "subcategory": "fiction",
   "releasedAt": "2021-09-10"
  }
  
@@ -171,7 +171,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391347" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory":"fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -183,7 +183,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391348" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory":"fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -195,7 +195,7 @@
   "userId": "6329d6a2266fe104fe09b8aa",
   "ISBN":"978-0008391349" ,
   "category": "movie",
-  "subcategory": ["fiction"],
+  "subcategory":"fiction",
   "releasedAt": "2021-09-10"
  }
  
@@ -207,7 +207,7 @@
  "userId": "6329d6a2266fe104fe09b8aa",
  "ISBN":"978-0008391350" ,
  "category": "movie",
- "subcategory": ["fiction"],
+ "subcategory": "fiction",
  "releasedAt": "2021-09-10"
 }
 
@@ -219,7 +219,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391351" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-08-10"
 }
 
@@ -231,7 +231,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391352" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-08-10"
 }
 
@@ -242,7 +242,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391353" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -253,7 +253,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391354" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -264,7 +264,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391355" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -275,7 +275,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391356" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -286,7 +286,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391357" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -297,7 +297,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391358" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -308,7 +308,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391359" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -319,7 +319,7 @@
  "userId": "6329f68a9d793cd125e36f15",
  "ISBN":"978-0008391360" ,
  "category": "movies",
- "subcategory": ["drama"],
+ "subcategory": "drama",
  "releasedAt": "2021-09-10"
 }
 
@@ -330,7 +330,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391361" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -342,7 +342,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391362" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -354,7 +354,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391363" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -366,7 +366,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391364" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -378,7 +378,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391365" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -390,7 +390,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391366" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -402,7 +402,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391367" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -414,7 +414,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391368" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -426,7 +426,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391369" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -438,7 +438,7 @@
  "userId": "632a924384563306206c2977",
  "ISBN":"978-0008391370" ,
  "category": "Historical Fiction",
- "subcategory": ["Fantasy"],
+ "subcategory": "Fantasy",
  "releasedAt": "2021-09-19"
 }
 
@@ -450,7 +450,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391371" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -462,7 +462,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391372" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -474,7 +474,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391373" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory":"Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -486,7 +486,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391374" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -498,7 +498,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391375" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -510,7 +510,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391376" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -522,7 +522,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391377" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -534,7 +534,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391378" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -546,7 +546,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391379" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -558,7 +558,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391380" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
@@ -570,7 +570,7 @@
  "userId": "632abf9b78c14478b67397b6",
  "ISBN":"978-0008391381" ,
  "category": "Detective and Mystery",
- "subcategory": ["Classic"],
+ "subcategory": "Classic",
  "releasedAt": "2021-09-14"
 }
 
