@@ -43,7 +43,7 @@ const authorisation = async function (req, res, next) {
 
         let findBook = await bookModel.findOne({ _id: bookId, isDeleted: false })
 
-        if (!findBook) return res.status(404).send({ status: false, msg: "This book is Already Deleted You Can Not Modify" })
+        if (!findBook) return res.status(404).send({ status: false, msg: "This book is Already Deleted Or not found" })
 
         let user = findBook.userId
         if (tokenUserId == user) {

@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 const userController = require("../controllers/userController")
 const bookControllers = require("../controllers/bookController")
-const update = require("../controllers/update")
 
-router.put("/books/:bookId",update.updatebook)
+
+
 const { authentication, authorisation } = require("../middlewares/auth")
 
 
@@ -24,7 +24,10 @@ router.post("/books", authentication, bookControllers.createBook)
 router.get("/books", authentication, bookControllers.getBook)
 
 //=================getBookById==============
-router.get("/books/:bookId", authentication,authorisation, bookControllers.getBookById)
+router.get("/books/:bookId", authentication, bookControllers.getBookById)
+
+// ==================Update Api+===============?
+router.put("/books/:bookId", authentication, authorisation, bookControllers.updatebook)
 
 // ===================delete api======================//
 router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)

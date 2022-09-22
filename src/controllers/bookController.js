@@ -21,7 +21,7 @@ let isbnRegex = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/
 
 const createBook = async function (req, res) {
     try {
-        let tokenAutherId = req.tokenUserId
+        let tokenUserId = req.tokenUserId
         let bookData = req.body
         if (!checkvalidReqBody(bookData)) {
             return res.status(400).send({ status: false, message: "Invalide Request. Please Provide Book Details" })
@@ -60,8 +60,8 @@ const createBook = async function (req, res) {
         }
 
 
-        if(tokenAutherId !== userId){
-            return res.send({status:false, message: "Sorry You are not authorised For creating a book"})
+        if(tokenUserId !== userId){
+            return res.status(401).send({status:false, message: "Sorry You are not authorised For creating a book"})
         }
 
         let checkUser = await userModel.findOne({userId})

@@ -211,7 +211,7 @@ const login = async function (req, res) {
         userId: user._id
       },
       "Project 3 Bookmanagement Group-49",
-      {expiresIn: "1h"}
+      {expiresIn: "60m"}
     
     );
 
