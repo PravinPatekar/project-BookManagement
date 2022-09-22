@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const userController= require("../controllers/userController")
-const bookControllers =require("../controllers/bookController")
+const userController = require("../controllers/userController")
+const bookControllers = require("../controllers/bookController")
+const { authentication, authorisation } = require("../middlewares/auth")
 
 
 
@@ -14,13 +15,13 @@ router.post("/login", userController.login)
 
 // =============== Create Book api ==================
 
-router.post("/books", bookControllers.createBook )
+router.post("/books", authentication, bookControllers.createBook)
 
 // =================getbook api=============//
-router.get("/books",bookControllers.getBook)
+router.get("/books", authentication, bookControllers.getBook)
 
 //=================getBookById==============
-router.get("/books/:bookId", bookControllers.getBookById)
+router.get("/books/:bookId", authentication,authorisation, bookControllers.getBookById)
 
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {
