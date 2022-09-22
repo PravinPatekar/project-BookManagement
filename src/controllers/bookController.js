@@ -140,7 +140,7 @@ const getBookById = async function (req, res) {
           .status(400)
           .send({ status: false, message: "Book Id invalid" });
   
-      let book = await bookModel.findOne({isDeleted:false,bookId});
+      let book = await bookModel.findById(bookId);
       if (!book)
         return res
           .status(404)
@@ -148,6 +148,13 @@ const getBookById = async function (req, res) {
             status: false,
             message: "Book Not Found",
           });
+
+    if (book.isDeleted == true)
+      return res.status(400).send({
+        status: false,
+        message: "Book already Deleted :( ",
+      });
+
   
       let reviewData = await reviewModel.find({ bookId: book._id });
       if (book.reviews == 0) {
