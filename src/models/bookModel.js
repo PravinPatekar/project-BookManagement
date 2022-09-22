@@ -7,6 +7,7 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      trim:true
     },
     excerpt: {
       type: String,
@@ -28,6 +29,10 @@ const bookSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 96c945d2cd6c1047a9ccd4d93dd33fec0e286163
     reviews: {
       type: Number,
       default: 0,
