@@ -21,7 +21,7 @@ const getBook = async function (req, res) {
         let sortBook = getBooks.sort((a, b) => a.title.localeCompare(b.title))
 
     
-        return res.status(200).send({ status: false, message: "Book list", data: sortBook })
+        return res.status(200).send({ status: true, message: "Book list", data: sortBook })
 
     } catch (err) {
         res.status(500).send({ status: false, message: err.message })

@@ -2,9 +2,9 @@ const bookModel = require("../models/bookModel");
 const reviewModel = require("../models/reviewModel");
 const mongoose = require("mongoose")
 
-function isValidObjectId(value){
-  return mongoose.Types.ObjectId.isValid(value)
-}
+// function isValidObjectId(value){
+//   return mongoose.Types.ObjectId.isValid(value)
+// }
 
 const isValidObjectId = (objectId) => {
     return mongoose.Types.ObjectId.isValid(objectId)
