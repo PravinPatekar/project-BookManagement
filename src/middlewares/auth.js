@@ -33,18 +33,14 @@ const authorisation = async function (req, res, next) {
         let tokenUserId = req.tokenUserId
         let bookId = req.params.bookId
 
-        if (!checkvalidparams(req.params)) {
-            return res.status(400).send({ status: false, message: "Please Provide Book Id in Path Params" })
-        }
-
         if (!isValidObjectId(bookId)) {
             return res.status(400).send({ status: false, message: "Invalid book Id" })
         }
 
-        let findBook = await bookModel.findOne({ _id: bookId, isDeleted: false })
-
-        if (!findBook) return res.status(404).send({ status: false, msg: "This book is Already Deleted Or not found" })
-
+        let findBook = await bookModel.findById(bookId);
+        if (!findBook)return res.status(404).send({status: false,message: "Book Not Found",});
+        if (findBook.isDeleted == true)return res.status(400).send({status: false,message: "Book already Deleted :( "});
+        
         let user = findBook.userId
         if (tokenUserId == user) {
             next();
