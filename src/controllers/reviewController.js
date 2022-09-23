@@ -33,9 +33,9 @@ const review = async function (req, res) {
       return res.status(400).send({ status: false, message: "Rating is required and should not be 0" });
 
     if (!/^[1-5]$/.test(data.rating)) {
-      return res.status(400).send({ status: false, message: "Rate between 1-5" });
+      return res.status(400).send({ status: false, message: "Rate between 1-5 or no decimal and must be number only" });
     }
-
+    // ================ Set attribute in data==============================
     data.bookId = bookId;
 
     let reviewData = await reviewModel.create(data);
@@ -74,8 +74,22 @@ const upadateReview = async function (req, res) {
 
     let { review, rating, reviewedBy } = upadateData
 
-    if (!/^[1-5]$/.test(rating)) {
-      return res.status(400).send({ status: false, message: "Rate between 1-5 or no decimal and must be number only" });
+    if (review) {
+      if (!/^[a-zA-Z\s]+$/.test(review)) {
+        return res.status(400).send({ status: false, message: "review can be in alphabets only "});
+      }
+
+    }
+    if (reviewedBy) {
+      if (!/^[a-zA-Z\s]+$/.test(reviewedBy)) {
+        return res.status(400).send({ status: false, message: "reviewedBy can be in alphabets only !!" });
+      }
+
+    }
+    if (rating) {
+      if (!/^[1-5]$/.test(rating)) {
+        return res.status(400).send({ status: false, message: "rating between 1-5 or no decimal and must be number only" });
+      }
     }
 
     let upadate = await reviewModel.findByIdAndUpdate(
@@ -83,8 +97,11 @@ const upadateReview = async function (req, res) {
       { $set: { review: review, rating: rating, reviewedBy: reviewedBy, reviewedAt: Date.now() } },
       { new: true }
     )
+    bookData.upadate = upadate
 
-    res.status(200).send({ status: true, message: "success", data: upadate })
+  
+
+    res.status(200).send({ status: true, message: "success", data: bookData })
 
   } catch (error) {
     return res.status(500).send({ status: false, message: err.message })
