@@ -32,6 +32,10 @@ router.put("/books/:bookId", authentication, authorisation, bookControllers.upda
 // ===================delete api======================//
 router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)
 
+
+//======================delete review by reviewId==================================
+router.delete("/books/:bookId/review/:reviewId",reviewController.deletedReview);
+
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {
     res.status(404).send({
