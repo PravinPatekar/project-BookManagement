@@ -3,10 +3,6 @@ const router = express.Router()
 const userController = require("../controllers/userController")
 const bookControllers = require("../controllers/bookController")
 const reviewController = require("../controllers/reviewController")
-
-
-
-
 const { authentication, authorisation } = require("../middlewares/auth")
 
 
@@ -34,8 +30,12 @@ router.put("/books/:bookId", authentication, authorisation, bookControllers.upda
 // ===================delete api======================//
 router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)
 
+// ================================ Review Api =================
 
-//======================delete review by reviewId==================================
+router.post("/books/:bookId/review",reviewController.review)
+
+router.put("/books/:bookId/review/:reviewId",reviewController.upadateReview)
+
 router.delete("/books/:bookId/review/:reviewId",reviewController.deletedReview);
 
 //=========================== if the endpoint are correct or not ==========================================
