@@ -2,7 +2,11 @@ const express = require("express")
 const router = express.Router()
 const userController = require("../controllers/userController")
 const bookControllers = require("../controllers/bookController")
+<<<<<<< HEAD
 const upadateReview = require("../controllers/UpdateeReview")
+=======
+const reviewController = require("../controllers/reviewController")
+>>>>>>> 9bad9740d31d840dbd40e840bc320bcf617d734e
 
 
 
@@ -33,8 +37,14 @@ router.put("/books/:bookId", authentication, authorisation, bookControllers.upda
 // ===================delete api======================//
 router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)
 
+<<<<<<< HEAD
 
 router.put("/books/:bookId/review/:reviewId" , upadateReview.upadateReview )
+=======
+//===================review api====================//
+
+router.post("/books/:bookId/review", reviewController.review);
+>>>>>>> 9bad9740d31d840dbd40e840bc320bcf617d734e
 
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {
