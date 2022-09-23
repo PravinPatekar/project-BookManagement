@@ -6,7 +6,8 @@ const reviewSchema = new mongoose.Schema(
     bookId: {
       type: ObjectId,
       required: [true, "Please provide a Book 'Id'"],
-      ref: "Book"
+      ref: "Book",
+      trim:true
     },
 
     reviewedBy: {
@@ -20,7 +21,7 @@ const reviewSchema = new mongoose.Schema(
     reviewedAt: {
       type: Date,
       default: Date.now(),
-      required: true
+      required: true,
     },
 
     rating: {

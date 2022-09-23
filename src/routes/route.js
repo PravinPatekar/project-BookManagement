@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const userController = require("../controllers/userController")
 const bookControllers = require("../controllers/bookController")
+const reviewController = require("../controllers/reviewController")
 
 
 
@@ -31,6 +32,10 @@ router.put("/books/:bookId", authentication, authorisation, bookControllers.upda
 
 // ===================delete api======================//
 router.delete("/books/:bookId",authentication, authorisation, bookControllers.deleteById)
+
+//===================review api====================//
+
+router.post("/books/:bookId/review", reviewController.review);
 
 //=========================== if the endpoint are correct or not ==========================================
 router.all("*", function (req, res) {
