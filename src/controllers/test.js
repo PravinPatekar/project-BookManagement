@@ -1,5 +1,5 @@
 
-let rating = 
+let rating = 5
 
 let ratingregex = /[1-5]{1}/
        if (!(ratingregex.test(rating))) {
