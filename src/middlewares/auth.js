@@ -2,16 +2,12 @@ const jwt = require("jsonwebtoken")
 const bookModel = require("../models/bookModel")
 const mongoose = require("mongoose")
 
-const checkvalidparams = function (value) {
-    return Object.keys(value).length > 0
-}
-
 const isValidObjectId = function (objectid) {
     return mongoose.Types.ObjectId.isValid(objectid)
 }
 const authentication = function (req, res, next) {
     try {
-        let token = req.headers["x-auth-token"];
+        let token = req.headers["x-api-key"];
         if (!token) {
             return res.send({ status: false, msg: "Please Provide Token in Header" })
         }

@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const bookModel = require('../models/bookModel');
 const userModel = require("../models/userModel")
 const reviewModel = require("../models/reviewModel");
+const moment = require("moment")
 
 const isValidObjectId = function (objectid) {
     return mongoose.Types.ObjectId.isValid(objectid)
@@ -34,7 +35,7 @@ const createBook = async function (req, res) {
         if (!isValid(title)) {
             return res.status(400).send({ status: false, message: "title is required" })
         }
-        // if (!validName(title)) return res.status(400).send({ status: false, message: "title Should be Letters" })
+       
 
         let titleunique = await bookModel.findOne({ title })
         if (titleunique) {
@@ -102,7 +103,9 @@ const createBook = async function (req, res) {
         if (!isValid(releasedAt)) {
             return res.status(400).send({ status: false, message: "releasedAt is required" })
         }
-
+        if(!(moment(releasedAt, 'YYYY-MM-DD', true).isValid())){
+           return res.status(400).send({status:false, message:"invalid date format please provide date format Like YYYY MM DD"})
+        }
         // ===============================================>> End <<===========================================================//
 
         let createdBook = await bookModel.create(bookData)
@@ -113,7 +116,7 @@ const createBook = async function (req, res) {
 
 
 }
-
+// ====================================== Get book details ===================?
 
 const getBook = async function (req, res) {
     try {
@@ -149,15 +152,17 @@ const getBookById = async function (req, res) {
 
         if (book.isDeleted == true)
             return res.status(400).send({ status: false, message: "Book already Deleted :( " });
-
+      
         let reviewData = await reviewModel.find({ bookId: book._id });
         if (book.reviews == 0) {
             Object.assign(book._doc, { reviewData: [] });
         } else {
             Object.assign(book._doc, { reviewData: [reviewData] });
         }
+        const { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt } = book
+        const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt,createdAt,updatedAt, reviewData }
 
-        res.status(200).send({ status: true, count: reviewData.length, message: "success", data: book });
+        res.status(200).send({ status: true, count: reviewData.length, message: "success", data: savadata });
     } catch (err) {
         return res.status(500).send({ status: false, message: err.message });
     }
@@ -179,7 +184,8 @@ const updatebook = async function (req, res) {
             let findTitle = await bookModel.findOne({ title });
             if (findTitle) return res.status(400).send({ status: false, massage: "title is already present with another book", });
         }
-
+         
+        
         if (!isbnRegex.test(ISBN)) {
             return res.status(400).send({ status: false, message: "ISBN Should be 10 or 13 digits only" });
         }
