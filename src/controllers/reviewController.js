@@ -22,16 +22,16 @@ const review = async function (req, res) {
       return res.status(404).send({ status: false, message: "Book not found" });
 
     if (checkBookId.isDeleted == true)
-      return res.status(404).send({ status: false, message: "Book not found or might have been deleted" });
+      return res.status(400).send({ status: false, message: "Book already deleted" });
 
     let data = req.body;
      
 
     if (!checkvalidReqBody(data))
-      return res.status(400).send({ status: false, message: "Details required to add review to book" });
+      return res.status(400).send({ status: false, message: "please provide some data for create review" });
 
     if (!data.rating)
-      return res.status(400).send({ status: false, message: "Rating is required and should not be 0" });
+      return res.status(400).send({ status: false, message: "Rating is required" });
 
       if(!data.reviewedAt){
         return res.status(400).send({status:false,message:"reviewedAt is required "})
@@ -47,6 +47,7 @@ const review = async function (req, res) {
     await bookModel.updateOne({ _id: bookId }, { $inc: { reviews: 1 } }); 
 
     const bookdata = await bookModel.findOne({ _id: bookId})
+
     const reviewData = await reviewModel.find({_id:createData._id})
     const { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt } = bookdata
     const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt,createdAt,updatedAt, reviewData }
@@ -68,7 +69,7 @@ const upadateReview = async function (req, res) {
 
     let bookData = await bookModel.findById(bookId)
     if (!bookData) return res.status(404).send({ status: false, message: "Book Not Found", });
-    if (bookData.isDeleted == true) return res.status(404).send({ status: false, message: "Book already Deleted :( " });
+    if (bookData.isDeleted == true) return res.status(400).send({ status: false, message: "Book already Deleted :( " });
 
     if (!isValidObjectId(reviewId)) {
       return res.status(400).send({ status: false, message: "Invalid review Id" })

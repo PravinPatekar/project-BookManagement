@@ -26,8 +26,6 @@ const reviewSchema = new mongoose.Schema(
     rating: {
       type: Number,
       required: [true, "please rate our book it's very important for us"],
-      min: 1,
-      max: 5,
       trim: true
     },
     review: {

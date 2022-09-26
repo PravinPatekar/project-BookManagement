@@ -35,7 +35,7 @@ const createBook = async function (req, res) {
         if (!isValid(title)) {
             return res.status(400).send({ status: false, message: "title is required" })
         }
-       
+
 
         let titleunique = await bookModel.findOne({ title })
         if (titleunique) {
@@ -67,7 +67,7 @@ const createBook = async function (req, res) {
 
         let checkUser = await userModel.findOne({ userId })
         if (!checkUser) {
-            return res.status(400).send({ status: false, message: "please enter correct user id becouse user not found for this id" })
+            return res.status(400).send({ status: false, message: " user not found in our database" })
         }
 
         // ===============================================>> End <<===========================================================//
@@ -103,8 +103,8 @@ const createBook = async function (req, res) {
         if (!isValid(releasedAt)) {
             return res.status(400).send({ status: false, message: "releasedAt is required" })
         }
-        if(!(moment(releasedAt, 'YYYY-MM-DD', true).isValid())){
-           return res.status(400).send({status:false, message:"invalid date format please provide date format Like YYYY MM DD"})
+        if (!(moment(releasedAt, 'YYYY-MM-DD', true).isValid())) {
+            return res.status(400).send({ status: false, message: "invalid date format please provide date format Like YYYY MM DD" })
         }
         // ===============================================>> End <<===========================================================//
 
@@ -152,7 +152,7 @@ const getBookById = async function (req, res) {
 
         if (book.isDeleted == true)
             return res.status(400).send({ status: false, message: "Book already Deleted :( " });
-      
+
         let reviewData = await reviewModel.find({ bookId: book._id });
         if (book.reviews == 0) {
             Object.assign(book._doc, { reviewData: [] });
@@ -160,7 +160,7 @@ const getBookById = async function (req, res) {
             Object.assign(book._doc, { reviewData: [reviewData] });
         }
         const { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt } = book
-        const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt,createdAt,updatedAt, reviewData }
+        const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt, reviewData }
 
         res.status(200).send({ status: true, count: reviewData.length, message: "success", data: savadata });
     } catch (err) {
@@ -184,22 +184,30 @@ const updatebook = async function (req, res) {
             let findTitle = await bookModel.findOne({ title });
             if (findTitle) return res.status(400).send({ status: false, massage: "title is already present with another book", });
         }
-         
-        
-        if (!isbnRegex.test(ISBN)) {
-            return res.status(400).send({ status: false, message: "ISBN Should be 10 or 13 digits only" });
+
+        if (ISBN) {
+            if (!isbnRegex.test(ISBN)) {
+                return res.status(400).send({ status: false, message: "ISBN Should be 10 or 13 digits only" });
+            }
+            let isbnUnique = await bookModel.findOne({ ISBN });
+            if (isbnUnique) {
+                return res.status(400).send({ status: false, message: "ISBN allready exists" });
+            }
+
         }
 
-        let isbnUnique = await bookModel.findOne({ ISBN });
-        if (isbnUnique) {
-            return res.status(400).send({ status: false, message: "ISBN allready exists" });
+        if (releasedAt) {
+            if (!(moment(releasedAt, 'YYYY-MM-DD', true).isValid())) {
+                return res.status(400).send({ status: false, message: "invalid date format please provide date format Like YYYY MM DD" })
+            }
         }
+
         let updatebook = await bookModel.findByIdAndUpdate(
             bookId,
             { $set: { title: title, excerpt: excerpt, ISBN: ISBN, releasedAt: new Date } },
             { new: true })
 
-        return res.status(200).send({ status: true,message:"success", data: updatebook });
+        return res.status(200).send({ status: true, message: "success", data: updatebook });
     } catch (err) {
         return res.status(500).send({ status: "error", error: err.message });
     }
