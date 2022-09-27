@@ -14,7 +14,7 @@ const checkvalidReqBody = function (resBody) {
 const review = async function (req, res) {
   try {
     let bookId = req.params.bookId;
-
+ // ======================================= Book Id validation ======================================
     if (!isValidObjectId(bookId)) return res.status(400).send({ status: false, message: "Enter a valid book id" });
 
     let checkBookId = await bookModel.findById(bookId);
@@ -25,8 +25,7 @@ const review = async function (req, res) {
       return res.status(400).send({ status: false, message: "Book already deleted" });
 
     let data = req.body;
-     
-
+      // ======================================= Check data present in body and check required key ======================================
     if (!checkvalidReqBody(data))
       return res.status(400).send({ status: false, message: "please provide some data for create review" });
 
@@ -42,13 +41,15 @@ const review = async function (req, res) {
     }
     // ================ Set attribute in data==============================
     data.bookId = bookId;
-
+ // ======================================= Increase review ======================================
     let createData = await reviewModel.create(data);
     await bookModel.updateOne({ _id: bookId }, { $inc: { reviews: 1 } }); 
 
     const bookdata = await bookModel.findOne({ _id: bookId})
 
     const reviewData = await reviewModel.find({_id:createData._id})
+
+     // ======================================= Object destructure ======================================
     const { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt } = bookdata
     const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt,createdAt,updatedAt, reviewData }
 
@@ -62,7 +63,7 @@ const upadateReview = async function (req, res) {
   try {
     let bookId = req.params.bookId
     let reviewId = req.params.reviewId
-
+ // ======================================= User Id and Book Id validation ======================================
     if (!isValidObjectId(bookId)) {
       return res.status(400).send({ status: false, message: "Invalid book Id" })
     }
@@ -82,16 +83,19 @@ const upadateReview = async function (req, res) {
     if (!checkvalidReqBody(upadateData)) {
       return res.status(400).send({ status: false, message: "Invalide Request. Please Provide Review Details" })
     }
+ // ======================================= End =======================================================
 
+ // ======================================= Destructure and check all key and update =======================================================
     let { review, rating, reviewedBy } = upadateData
 
     if(!(review || rating ||  reviewedBy)){
       return res.status(400).send({status:false, message:"You can only update review, rating, reviewedBy  "})
     }
-
+    if(review){
       reviewDat.review = review
       await reviewDat.save() 
-
+    }
+      
     if (reviewedBy) {
       if (!/^[a-zA-Z\s]+$/.test(reviewedBy)) return res.status(400).send({ status: false, message: "reviewedBy can be in alphabets only !!" });
       reviewDat.reviewedBy = reviewedBy
@@ -106,6 +110,7 @@ const upadateReview = async function (req, res) {
     }
     let reviewData = await reviewModel.find({ _id: reviewId })
     
+    // ======================================= Set Response ================================================================
     const { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt, createdAt, updatedAt } = bookData
     const savadata = { _id, title, excerpt, userId, category, subcategory, isDeleted, reviews, releasedAt,createdAt,updatedAt, reviewData }
 
@@ -120,7 +125,7 @@ const deletedReview = async function (req, res) {
   try {
     let bookId = req.params.bookId;
     let reviewId = req.params.reviewId;
-    //----------------------Validation Start--------------------------------------------------------//
+    //----------------------Book Id and Review  Id Validation Start--------------------------------------------------------//
 
     if (!isValidObjectId(bookId)) {
       return res.status(400).send({ status: false, message: "Invalid book Id" })
@@ -138,9 +143,8 @@ const deletedReview = async function (req, res) {
     if (bookData.isDeleted == true) return res.status(404).send({ status: false, message: "Review already Deleted :( " });
     //----------------------Validation Ends--------------------------------------------------------//
 
-   
-
-    const isBookIdPresent = await bookModel.findOneAndUpdate(
+// ======================================= Dicrease review by 1 ======================================
+     await bookModel.findOneAndUpdate(
       {
         _id: bookId,
         isDeleted: false,
@@ -153,8 +157,8 @@ const deletedReview = async function (req, res) {
     );
 
     const date = new Date();
-
-    let deleteReview = await reviewModel.findByIdAndUpdate(
+// ======================================= Delete Review ======================================
+    await reviewModel.findByIdAndUpdate(
       reviewId,
       {
         isDeleted: true,

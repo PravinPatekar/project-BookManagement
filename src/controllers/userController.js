@@ -63,7 +63,7 @@ const registerUser = async function (req, res) {
     //================================== to check the email format ===================================
     let emailValid = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email);
     if (!emailValid) {
-      return res.status(400).send({status: false, message: `${email} is not a valid E-mail !!`});
+      return res.status(400).send({ status: false, message: `${email} is not a valid E-mail !!` });
     }
     //================================ duplicate email =====================================================
     let checkEmail = await userModel.findOne({ email: email });
@@ -95,31 +95,33 @@ const registerUser = async function (req, res) {
 
 const login = async function (req, res) {
   try {
+    // ======================================= Check body data and validation for email and password ======================================
     const data = req.body;
     if (Object.keys(data).length == 0) {
       return res.status(400).send({ status: false, message: "Please Provide email and password in body!!" });
     }
- 
-       const {email, password } = data
+
+    const { email, password } = data
 
     if (isValid(email) == false) {
-      return res.status(400).send({ status: false , message: "email is required"});
+      return res.status(400).send({ status: false, message: "email is required" });
     }
     if (isValid(password) == false) {
-      return res.status(400).send({status: false,msg: "password is required"});
+      return res.status(400).send({ status: false, msg: "password is required" });
     }
 
     let isValidEmail = validator.isEmail(email);
     if (isValidEmail == false) {
-      return res.status(400).send({status: false,message: "please enter valid email"});
+      return res.status(400).send({ status: false, message: "please enter valid email" });
     }
+    // ======================================= End ======================================
 
-    const user = await userModel.findOne({email:email,password:password});
+    const user = await userModel.findOne({ email: email, password: password });
 
     if (!user) {
-      return res.status(401).send({status: false,message: "email or password is not correct"});
+      return res.status(401).send({ status: false, message: "email or password is not correct" });
     }
-
+    // ======================================= Create Token ======================================
     let token = jwt.sign(
       {
         userId: user._id
@@ -128,6 +130,7 @@ const login = async function (req, res) {
       { expiresIn: "1h" }
 
     );
+    // ======================================= Set token in header ======================================
     res.setHeader("x-api-key", token);
     return res.status(200).send({ status: true, data: token });
   } catch (error) {
