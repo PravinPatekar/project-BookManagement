@@ -15,7 +15,6 @@ const authentication = function (req, res, next) {
             if (err) {
                 return res.status(401).send({ status: false, error:  err.message})
             } else {
-                console.log(decoded)
                 let userId = decoded.userId
                 req["tokenUserId"] = userId
                 next()
