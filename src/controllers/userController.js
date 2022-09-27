@@ -125,7 +125,7 @@ const login = async function (req, res) {
         userId: user._id
       },
       "Project 3 Bookmanagement Group-49",
-      { expiresIn: "1m" }
+      { expiresIn: "1h" }
 
     );
     res.setHeader("x-api-key", token);

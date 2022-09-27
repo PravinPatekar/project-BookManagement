@@ -11,12 +11,16 @@ const authentication = function (req, res, next) {
         if (!token) {
             return res.status(400).send({ status: false, msg: "Please Provide Token in Header" })
         }
-        let decodedToken = jwt.verify(token, "Project 3 Bookmanagement Group-49")
-
-        if (!decodedToken) return res.status(401).send({ status: false, msg: "token is not valid" })
-        let userId = decodedToken.userId
-        req["tokenUserId"] = userId
-        next()
+         jwt.verify(token, "Project 3 Bookmanagement Group-49", function (err, decoded) {
+            if (err) {
+                return res.status(401).send({ status: false, error:  err.message})
+            } else {
+                console.log(decoded)
+                let userId = decoded.userId
+                req["tokenUserId"] = userId
+                next()
+            }
+        });
     } catch (err) {
         console.log("This is the error :", err.message)
         res.status(500).send({ msg: " server Error", error: err.message })
@@ -35,9 +39,9 @@ const authorisation = async function (req, res, next) {
         }
 
         let findBook = await bookModel.findById(bookId);
-        if (!findBook)return res.status(404).send({status: false,message: "Book Not Found"});
-        if (findBook.isDeleted == true)return res.status(400).send({status: false,message: "Book already Deleted :( "});
-        
+        if (!findBook) return res.status(404).send({ status: false, message: "Book Not Found" });
+        if (findBook.isDeleted == true) return res.status(400).send({ status: false, message: "Book already Deleted :( " });
+
         let user = findBook.userId
         if (tokenUserId == user) {
             next();
