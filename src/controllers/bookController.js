@@ -3,6 +3,36 @@ const bookModel = require('../models/bookModel');
 const userModel = require("../models/userModel")
 const reviewModel = require("../models/reviewModel");
 const moment = require("moment")
+const aws= require("aws-sdk")
+
+aws.config.update({
+    accessKeyId: "AKIAY3L35MCRZNIRGT6N",
+    secretAccessKey: "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",
+    region: "ap-south-1"
+})
+
+
+let uploadFile= async (file) =>{
+   return new Promise( function(resolve, reject) {
+    let s3= new aws.S3({apiVersion: '2006-03-01'}); // we will be using the s3 service of aws
+
+    var uploadParams= {
+        ACL: "public-read",
+        Bucket: "classroom-training-bucket",  //HERE
+        Key: "bookCover/" + file.originalname, //HERE 
+        Body: file.buffer
+    }
+    s3.upload( uploadParams, function (err, data ){
+        if(err) {
+            return reject({"error": err})
+        }
+        console.log(data)
+        console.log("file uploaded succesfully")
+        return resolve(data.Location)
+    })
+   })
+}
+
 
 const isValidObjectId = function (objectid) {
     return mongoose.Types.ObjectId.isValid(objectid)
@@ -20,18 +50,34 @@ const isValid = function (value) {
 
 let isbnRegex = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/
 
+
+const createBookUrl = async function(req, res){
+    try {
+        let bookCover= req.files
+        if(!(bookCover && bookCover.length>0)){
+            return res.status(400).send({status:false, message:"BookCover is required"})
+        }
+        let uploadedFileURL= await uploadFile( bookCover[0] )
+
+        return res.status(201).send({status:true, data:uploadedFileURL})
+    } catch (error) {
+        res.status(500).send({ msg: "Error", error: error.message })
+    }
+}
+
 const createBook = async function (req, res) {
     try {
         let tokenUserId = req.tokenUserId
-        let bookData = req.body
+        let bookData = req.body 
         if (!checkvalidReqBody(bookData)) {
             return res.status(400).send({ status: false, message: "Invalide Request. Please Provide Book Details" })
         }
+        // let uploadedFileURL= await uploadFile( bookCover[0] )
 
-        let { title, excerpt, userId, ISBN, category, subcategory, releasedAt } = bookData
+        let { title, excerpt, userId, ISBN, category, subcategory, releasedAt,bookCover } = bookData
 
         // ===========================================>> title validation <<==================================================//
-
+           
         if (!isValid(title)) {
             return res.status(400).send({ status: false, message: "title is required" })
         }
@@ -236,4 +282,4 @@ const deleteById = async function (req, res) {
     }
 }
 
-module.exports = { createBook, getBook, getBookById, deleteById, updatebook }
+module.exports = { createBook, getBook, getBookById, deleteById, updatebook ,createBookUrl }

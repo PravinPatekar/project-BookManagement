@@ -4,8 +4,7 @@ const userController = require("../controllers/userController")
 const bookControllers = require("../controllers/bookController")
 const reviewController = require("../controllers/reviewController")
 const { authentication, authorisation } = require("../middlewares/auth")
-
-
+const aws= require("aws-sdk")
 
 //========== post api users===========================
 router.post("/register", userController.registerUser)
@@ -13,6 +12,9 @@ router.post("/register", userController.registerUser)
 //============login api================
 router.post("/login", userController.login)
 
+// ====================== Create aws link ==============================
+
+router.post("/create-aws-url", bookControllers.createBookUrl)
 
 // =============== Create Book api ==================
 
