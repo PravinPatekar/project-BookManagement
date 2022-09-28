@@ -144,6 +144,11 @@ const createBook = async function (req, res) {
             return res.status(400).send({ status: false, message: "subcategory is required" })
         }
 
+
+        if (!isValid(bookCover)) {
+            return res.status(400).send({ status: false, message: "ISBN is required" })
+        }
+
         // ===============================================>> End <<===========================================================//
         // ===============================================>> releasedAt validation <<===========================================================//
         if (!isValid(releasedAt)) {
