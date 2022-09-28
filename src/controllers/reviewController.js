@@ -32,6 +32,13 @@ const review = async function (req, res) {
 
     if (!data.rating)
       return res.status(400).send({ status: false, message: "Rating is required" });
+      
+      if (data.reviewedAt) {
+        if (!(moment(data.reviewedAt, 'YYYY-MM-DD', true).isValid())) {
+            return res.status(400).send({ status: false, message: "invalid date format please provide date format Like YYYY MM DD" })
+        }
+    }
+
 
     if (!/^[1-5]$/.test(data.rating)) {
       return res.status(400).send({ status: false, message: "Rate between 1-5 or no decimal and must be number only" });
