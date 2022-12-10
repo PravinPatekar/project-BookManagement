@@ -3,7 +3,7 @@ const bookModel = require('../models/bookModel');
 const userModel = require("../models/userModel")
 const reviewModel = require("../models/reviewModel");
 const moment = require("moment")
-const aws= require("aws-sdk")
+const aws= require("aws-sdk") //Amazon Web Services 
 
 aws.config.update({
     accessKeyId: "AKIAY3L35MCRZNIRGT6N",
